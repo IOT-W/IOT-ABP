@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\abpapi.Domain.Shared\abpapi.Domain.Shared.csproj" />
+    <ProjectReference Include="..\abpapi.Domain\abpapi.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
