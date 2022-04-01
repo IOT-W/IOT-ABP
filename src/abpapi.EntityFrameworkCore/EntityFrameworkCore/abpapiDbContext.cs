@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using abpapi.ClassificationType;
+using IOT.electricity.ClassificationType;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -49,6 +51,9 @@ public class abpapiDbContext :
     // Tenant Management
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
+    public DbSet<Brand> Brand { get; set; }
+    public DbSet<BrandType> BrandType { get; set; }
+    public DbSet<Point> Point { get; set; }
 
     #endregion
 
