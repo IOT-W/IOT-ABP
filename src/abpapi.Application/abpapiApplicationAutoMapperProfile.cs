@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using abpapi.CommodityManagement;
+using abpapi.OutPut;
+using AutoMapper;
 
 namespace abpapi;
 
@@ -9,5 +11,7 @@ public class abpapiApplicationAutoMapperProfile : Profile
         /* You can configure your AutoMapper mapping configuration here.
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */
+        CreateMap<Goods_View, Goods>();
+        CreateMap<Order_View, Order>();
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using abpapi.CommodityManagement;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -49,6 +50,8 @@ public class abpapiDbContext :
     // Tenant Management
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
+    public DbSet<Goods> Goods { get; set; }
+    public DbSet<Order> Order { get; set; }
 
     #endregion
 
@@ -75,6 +78,15 @@ public class abpapiDbContext :
 
         /* Configure your own tables/entities inside here */
 
+        builder.Entity<Goods>(b =>
+        {
+            b.ToTable("Goods");
+        });
+
+        builder.Entity<Order>(b =>
+        {
+            b.ToTable("Order");
+        });
         //builder.Entity<YourEntity>(b =>
         //{
         //    b.ToTable(abpapiConsts.DbTablePrefix + "YourEntities", abpapiConsts.DbSchema);
