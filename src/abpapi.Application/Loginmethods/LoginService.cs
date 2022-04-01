@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.ObjectMapping;
 
 namespace IOT.electricity.Loginmethods
 {
@@ -26,29 +27,58 @@ namespace IOT.electricity.Loginmethods
             this.repository = repository;
         }
 
+        /// <summary>
+        /// 注册
+        /// </summary>
+        /// <param name="userLogins"></param>
+        /// <returns></returns>
         [HttpPost, Route("api/AddLogin")]
-        public async Task<logintableDTO> AddLogin(logintable userLogins)
+        public async Task<int> AddLogin(logintable userLogins)
         {
             var emp = await repository.InsertAsync(userLogins);
-            return new logintableDTO
+            if (emp != null)
             {
-                Login_account = emp.Login_account,
-                Login_pwd = emp.Login_pwd,
-                Login_name = emp.Login_name,
-                Login_state = emp.Login_state,
-            };
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="pwd"></param>
+        /// <returns></returns>
         [HttpGet, Route("api/Login")]
         public async Task<logintableDTO> Getlogin(string name, string pwd)
         {
-            var emp = await repository.GetAsync(x => x.Login_account.Equals(name) & x.Login_pwd.Equals(pwd));
-
-            var list = ObjectMapper.Map<logintable, logintableDTO>(emp);
-
-            return list;
+            var emp = await repository.GetListAsync();
+            var IsCun = emp.FirstOrDefault(x => x.Login_account.Equals(name) & x.Login_pwd.Equals(pwd) | x.Login_name.Equals(name) & x.Login_pwd.Equals(pwd));
+            return ObjectMapper.Map<logintable, logintableDTO>(IsCun);
         }
 
+        /// <summary>
+        /// 判断用户是否存在
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        [HttpGet("api/ExistUser")]
+        public async Task<int> ExistUser(string userid)
+        {
+            var items = await repository.GetListAsync();
+            var IsCun = items.Where(x => x.Login_userid.Equals(userid)).FirstOrDefault();
+            if (IsCun != null)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
         /// <summary>
         /// 支付宝请求用户授权码
         /// </summary>
@@ -56,11 +86,11 @@ namespace IOT.electricity.Loginmethods
         /// <returns></returns>
         public string RequestUserCode(string rCode)
         {
-            
+
             IAopClient client = new DefaultAopClient("https://openapi.alipay.com/gateway.do", "2021003125650409", merchant_private_key, "json", "1.0", "RSA2", alipay_public_key, "utf-8", false);
             AlipaySystemOauthTokenRequest request = new AlipaySystemOauthTokenRequest();
             request.GrantType = "authorization_code";
-           
+
             request.Code = rCode;
             AlipaySystemOauthTokenResponse response = client.Execute(request);
             return (response.Body);
