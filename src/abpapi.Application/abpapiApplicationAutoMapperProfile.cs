@@ -1,6 +1,8 @@
 ﻿using abpapi.Brank;
 using abpapi.ClassificationType;
 using abpapi.Spuk;
+using abpapi.ILoginService.DTO;
+using abpapi.Login;
 using AutoMapper;
 using IOT.electricity.ClassificationType;
 
@@ -15,5 +17,7 @@ public class abpapiApplicationAutoMapperProfile : Profile
          * into multiple profile classes for a better organization. */
         CreateMap<BrandOut, Brand>();
         CreateMap<SpuInput, Spu>();
+        CreateMap<logintable, logintableDTO>();
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using abpapi.ClassificationType;
 using IOT.electricity.ClassificationType;
+using abpapi.Login;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -47,6 +48,7 @@ public class abpapiDbContext :
     public DbSet<OrganizationUnit> OrganizationUnits { get; set; }
     public DbSet<IdentitySecurityLog> SecurityLogs { get; set; }
     public DbSet<IdentityLinkUser> LinkUsers { get; set; }
+    public DbSet<logintable> logintable { get; set; }       //普通登录表
 
     // Tenant Management
     public DbSet<Tenant> Tenants { get; set; }
@@ -80,7 +82,10 @@ public class abpapiDbContext :
         builder.ConfigureTenantManagement();
 
         /* Configure your own tables/entities inside here */
-
+        builder.Entity<logintable>(b =>
+        {
+            b.ToTable("logintable");
+        });
         //builder.Entity<YourEntity>(b =>
         //{
         //    b.ToTable(abpapiConsts.DbTablePrefix + "YourEntities", abpapiConsts.DbSchema);
