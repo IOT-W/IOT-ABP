@@ -43,6 +43,58 @@ namespace abpapi.Migrations
                     b.ToTable("Point");
                 });
 
+            modelBuilder.Entity("abpapi.ClassificationType.Spu", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Gift")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Mended")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Shelves")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ShopLabel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ShopMarkPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ShopModel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShopName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ShopNum")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShopParams")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShopPin")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ShopPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ShopSupplier")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShopType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Welfare")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Spu");
+                });
+
             modelBuilder.Entity("IOT.electricity.ClassificationType.Brand", b =>
                 {
                     b.Property<Guid>("Id")
