@@ -1,4 +1,6 @@
 ﻿using abpapi.Brank;
+using abpapi.ClassificationType;
+using abpapi.Spuk;
 using AutoMapper;
 using IOT.electricity.ClassificationType;
 
@@ -12,5 +14,6 @@ public class abpapiApplicationAutoMapperProfile : Profile
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */
         CreateMap<BrandOut, Brand>();
+        CreateMap<SpuInput, Spu>();
     }
 }
