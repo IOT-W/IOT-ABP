@@ -54,6 +54,7 @@ public class abpapiDbContext :
     public DbSet<Brand> Brand { get; set; }
     public DbSet<BrandType> BrandType { get; set; }
     public DbSet<Point> Point { get; set; }
+    public DbSet<Spu> Spu { get; set; }
 
     #endregion
 
