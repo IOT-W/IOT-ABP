@@ -3,6 +3,8 @@ using abpapi.ClassificationType;
 using abpapi.Spuk;
 using abpapi.ILoginService.DTO;
 using abpapi.Login;
+using abpapi.CommodityManagement;
+using abpapi.OutPut;
 using AutoMapper;
 using IOT.electricity.ClassificationType;
 
@@ -19,5 +21,7 @@ public class abpapiApplicationAutoMapperProfile : Profile
         CreateMap<SpuInput, Spu>();
         CreateMap<logintable, logintableDTO>();
 
+        CreateMap<Goods_View, Goods>();
+        CreateMap<Order_View, Order>();
     }
 }
