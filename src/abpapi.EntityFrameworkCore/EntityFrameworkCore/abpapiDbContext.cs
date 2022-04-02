@@ -1,4 +1,7 @@
-﻿using abpapi.Login;
+﻿using abpapi.ClassificationType;
+using IOT.electricity.ClassificationType;
+using abpapi.CommodityManagement;
+using abpapi.Login;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -51,6 +54,12 @@ public class abpapiDbContext :
     // Tenant Management
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
+    public DbSet<Brand> Brand { get; set; }
+    public DbSet<BrandType> BrandType { get; set; }
+    public DbSet<Point> Point { get; set; }
+    public DbSet<Spu> Spu { get; set; }
+    public DbSet<Goods> Goods { get; set; }
+    public DbSet<Order> Order { get; set; }
 
     #endregion
 
@@ -79,6 +88,16 @@ public class abpapiDbContext :
         builder.Entity<logintable>(b =>
         {
             b.ToTable("logintable");
+        });
+
+        builder.Entity<Goods>(b =>
+        {
+            b.ToTable("Goods");
+        });
+
+        builder.Entity<Order>(b =>
+        {
+            b.ToTable("Order");
         });
         //builder.Entity<YourEntity>(b =>
         //{
