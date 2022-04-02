@@ -5,7 +5,7 @@ using System.Web;
 
 /// <summary>
 /// config 的摘要说明
-/// </summary>
+/// </summary>  
 public class Config
 {
     public Config()
