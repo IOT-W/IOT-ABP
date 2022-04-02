@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace abpapi.Services
 {
@@ -18,7 +19,7 @@ namespace abpapi.Services
         {
             this.repository = repository;
         }
-        public async Task<Goods> Addbook(string Goods_Img, string Goods_Name, string Goods_Classification, string Goods_SalePrice, string Goods_MarketPrice, string Goods_Sku, string Goods_Shelves, string Goods_Type, string Goods_Coding)
+        public async Task<Goods> Addbook(string Goods_Img, string Goods_Name, string Goods_Classification, string Goods_SalePrice, string Goods_MarketPrice, string Goods_Sku, int Goods_Shelves, string Goods_Type, string Goods_Coding)
         {
             var list = await repository.InsertAsync(new Goods { Goods_Img = Goods_Img, Goods_Name = Goods_Name, Goods_Classification = Goods_Classification, Goods_SalePrice = Goods_SalePrice, Goods_MarketPrice = Goods_MarketPrice, Goods_Sku = Goods_Sku, Goods_Shelves = Goods_Shelves, Goods_Type = Goods_Type, Goods_Coding = Goods_Coding });
             return new Goods
@@ -47,7 +48,7 @@ namespace abpapi.Services
          
         }
 
-        public async Task<List<Goods>> Getbook(string Goods_Name, string Goods_Classification, string Goods_SalePrice, string Goods_MarketPrice, string Goods_Sku, string Goods_Shelves, string Goods_Type, string Goods_Coding)
+        public async Task<List<Goods>> Getbook(string Goods_Name, string Goods_Classification, string Goods_SalePrice, string Goods_MarketPrice, string Goods_Sku, int Goods_Shelves, string Goods_Type, string Goods_Coding)
         {
             var list = await repository.GetListAsync();
             if(!string.IsNullOrEmpty(Goods_Name))
@@ -70,9 +71,9 @@ namespace abpapi.Services
             {
                 list = list.Where(x => x.Goods_Sku.Contains(Goods_Sku)).ToList();
             }
-            if (!string.IsNullOrEmpty(Goods_Shelves))
+            if (Goods_Shelves==0)
             {
-                list = list.Where(x => x.Goods_Shelves.Contains(Goods_Shelves)).ToList();
+                list = list.Where(x => x.Goods_Shelves.Equals(Goods_Shelves)).ToList();
             }
             if (!string.IsNullOrEmpty(Goods_Type))
             {
@@ -92,11 +93,22 @@ namespace abpapi.Services
             return list.Id;
         }
 
-        public async Task<Guid> ShelvesModif(Goods_View goods)
+        [HttpGet]
+        
+        public async Task<int> ShelvesModif(Guid id, int State)
         {
-            var lists = ObjectMapper.Map<Goods_View, Goods>(goods);
-            var list = await repository.UpdateAsync(lists);
-            return list.Id;
+            var list = await repository.GetListAsync();
+            var lists = list.FirstOrDefault(x => x.Id.Equals(id));
+            lists.Goods_Shelves = State;
+            var k = await repository.UpdateAsync(lists);
+            if(k!=null)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }

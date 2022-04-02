@@ -36,7 +36,7 @@ namespace abpapi.OutPut
         /// <summary>
         /// 上架
         /// </summary>
-        public string Goods_Shelves { get; set; }
+        public int Goods_Shelves { get; set; }
         /// <summary>
         /// 类型
         /// </summary>
