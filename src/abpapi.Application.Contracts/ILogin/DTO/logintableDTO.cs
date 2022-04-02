@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Entities;
 
-namespace abpapi.ILoginService.DTO
+namespace abpapi.ILogin.DTO
 {
     public class logintableDTO 
     {
