@@ -1,6 +1,12 @@
-﻿using abpapi.ILoginService.DTO;
+﻿using abpapi.Brank;
+using abpapi.ClassificationType;
+using abpapi.Spuk;
+using abpapi.ILoginService.DTO;
 using abpapi.Login;
+using abpapi.CommodityManagement;
+using abpapi.OutPut;
 using AutoMapper;
+using IOT.electricity.ClassificationType;
 
 namespace abpapi;
 
@@ -11,7 +17,11 @@ public class abpapiApplicationAutoMapperProfile : Profile
         /* You can configure your AutoMapper mapping configuration here.
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */
+        CreateMap<BrandOut, Brand>();
+        CreateMap<SpuInput, Spu>();
         CreateMap<logintable, logintableDTO>();
 
+        CreateMap<Goods_View, Goods>();
+        CreateMap<Order_View, Order>();
     }
 }

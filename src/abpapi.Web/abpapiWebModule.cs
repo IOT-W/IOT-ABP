@@ -56,6 +56,7 @@ namespace abpapi.Web;
     )]
 public class abpapiWebModule : AbpModule
 {
+    private const string MyCors = "Default";
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.PreConfigure<AbpMvcDataAnnotationsLocalizationOptions>(options =>
@@ -80,11 +81,26 @@ public class abpapiWebModule : AbpModule
         ConfigureBundles();
         ConfigureAuthentication(context, configuration);
         ConfigureAutoMapper();
+
         ConfigureVirtualFileSystem(hostingEnvironment);
         ConfigureLocalizationServices();
         ConfigureNavigationServices();
         ConfigureAutoApiControllers();
         ConfigureSwaggerServices(context.Services);
+
+        //添加跨域支持
+        context.Services.AddCors(options =>
+        {
+            options.AddPolicy(MyCors, builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .WithExposedHeaders()
+                    .SetIsOriginAllowedToAllowWildcardSubdomains()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
     }
 
     private void ConfigureUrls(IConfiguration configuration)
@@ -134,7 +150,7 @@ public class abpapiWebModule : AbpModule
         {
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                    options.FileSets.ReplaceEmbeddedByPhysical<abpapiDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}abpapi.Domain.Shared"));
+                options.FileSets.ReplaceEmbeddedByPhysical<abpapiDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}abpapi.Domain.Shared"));
                 options.FileSets.ReplaceEmbeddedByPhysical<abpapiDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}abpapi.Domain"));
                 options.FileSets.ReplaceEmbeddedByPhysical<abpapiApplicationContractsModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}abpapi.Application.Contracts"));
                 options.FileSets.ReplaceEmbeddedByPhysical<abpapiApplicationModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}abpapi.Application"));
@@ -201,6 +217,10 @@ public class abpapiWebModule : AbpModule
     {
         var app = context.GetApplicationBuilder();
         var env = context.GetEnvironment();
+
+        app.UseCors(MyCors);
+        app.UseIdentityServer();
+        app.UseAuthorization();
 
         if (env.IsDevelopment())
         {
