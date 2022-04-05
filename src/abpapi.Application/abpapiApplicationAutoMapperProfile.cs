@@ -20,6 +20,7 @@ public class abpapiApplicationAutoMapperProfile : Profile
          * into multiple profile classes for a better organization. */
         CreateMap<BrandOut, Brand>();
         CreateMap<SpuInput, Spu>();
+        CreateMap<BrandInput, Brand>();
         CreateMap<logintable, logintableDTO>();
 
         CreateMap<Goods_View, Goods>();

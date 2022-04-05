@@ -1,5 +1,6 @@
 ﻿using abpapi.Brank;
 using IOT.electricity.ClassificationType;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,19 +20,7 @@ namespace abpapi.Brans
         {
             this.db = db;
         }
-        public async Task<IOT.electricity.ClassificationType.Brand> AddBrank(string BName, string BImg, string BSite, string BDescribe, int BSort, bool BType)
-        {
-            var list = await db.InsertAsync(new Brand { BName = BName, BImg = BImg, BSite = BSite, BDescribe = BDescribe, BSort = BSort, BType = BType });
-            return new Brand
-            {
-                BName = list.BName,
-                BImg = list.BImg,
-                BSite = list.BSite,
-                BDescribe = list.BDescribe,
-                BSort = list.BSort,
-                BType = list.BType
-            };
-        }
+      
         /// <summary>
         /// 品牌修改
         /// </summary>
@@ -62,6 +51,20 @@ namespace abpapi.Brans
         public async Task DeleBrad(Guid guid)
         {
             await db.DeleteAsync(guid);
+        }
+
+        public async Task<int> AddBrank(BrandInput brand)
+        {
+            var list = ObjectMapper.Map<BrandInput, Brand>(brand);
+            var lis = await db.InsertAsync(list);
+            if (lis != null)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }

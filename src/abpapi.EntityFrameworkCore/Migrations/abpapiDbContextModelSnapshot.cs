@@ -43,6 +43,28 @@ namespace abpapi.Migrations
                     b.ToTable("Point");
                 });
 
+            modelBuilder.Entity("abpapi.ClassificationType.Sku", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ShopMarkPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ShopNum")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ShopPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sku");
+                });
+
             modelBuilder.Entity("abpapi.ClassificationType.Spu", b =>
                 {
                     b.Property<Guid>("Id")
@@ -93,6 +115,111 @@ namespace abpapi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Spu");
+                });
+
+            modelBuilder.Entity("abpapi.CommodityManagement.Goods", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Goods_Classification")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Goods_Coding")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Goods_Img")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Goods_MarketPrice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Goods_Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Goods_SalePrice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Goods_Shelves")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Goods_Sku")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Goods_Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Goods", (string)null);
+                });
+
+            modelBuilder.Entity("abpapi.CommodityManagement.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Order_AfterState")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Order_Amountpayable")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Order_Consignee")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Order_DateTime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Order_MethodPayment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Order_Number")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Order_State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Order_TheMember")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Order_TotalAmount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Order_Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Order", (string)null);
+                });
+
+            modelBuilder.Entity("abpapi.Login.logintable", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Login_account")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Login_avatar")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Login_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Login_pwd")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Login_state")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Login_userid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("logintable", (string)null);
                 });
 
             modelBuilder.Entity("IOT.electricity.ClassificationType.Brand", b =>

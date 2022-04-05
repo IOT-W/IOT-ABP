@@ -9,7 +9,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace abpapi.Skuc
 {
-    internal class SkuServices : ApplicationService, ISkuServices
+    public class SkuServices : ApplicationService, ISkuServices
     {
         private readonly IRepository<Sku, Guid> db;
         public SkuServices(IRepository<Sku, Guid> db)

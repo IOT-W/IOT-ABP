@@ -60,6 +60,7 @@ public class abpapiDbContext :
     public DbSet<Spu> Spu { get; set; }
     public DbSet<Goods> Goods { get; set; }
     public DbSet<Order> Order { get; set; }
+    public DbSet<Sku> Sku { get; set; }
 
     #endregion
 

@@ -13,14 +13,8 @@ namespace abpapi.Brank
         /// <summary>
         /// 添加品牌管理
         /// </summary>
-        /// <param name="BName"></param>
-        /// <param name="BImg"></param>
-        /// <param name="BSite"></param>
-        /// <param name="BDescribe"></param>
-        /// <param name="BSort"></param>
-        /// <param name="BType"></param>
         /// <returns></returns>
-        Task<Brand> AddBrank(string BName, string BImg, string BSite, string BDescribe, int BSort, bool BType);
+        Task<int> AddBrank(BrandInput brand);
         /// <summary>
         /// 品牌列表
         /// </summary>
