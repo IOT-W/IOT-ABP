@@ -1,6 +1,4 @@
-﻿using abpapi.ClassificationType;
-using IOT.electricity.ClassificationType;
-using abpapi.CommodityManagement;
+﻿using abpapi.CommodityManagement;
 using abpapi.Login;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
@@ -54,10 +52,6 @@ public class abpapiDbContext :
     // Tenant Management
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
-    public DbSet<Brand> Brand { get; set; }
-    public DbSet<BrandType> BrandType { get; set; }
-    public DbSet<Point> Point { get; set; }
-    public DbSet<Spu> Spu { get; set; }
     public DbSet<Goods> Goods { get; set; }
     public DbSet<Order> Order { get; set; }
     public DbSet<Sku> Sku { get; set; }
