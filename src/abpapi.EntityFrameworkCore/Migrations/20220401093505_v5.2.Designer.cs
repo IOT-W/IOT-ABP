@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 using abpapi.EntityFrameworkCore;
@@ -12,9 +13,10 @@ using abpapi.EntityFrameworkCore;
 namespace abpapi.Migrations
 {
     [DbContext(typeof(abpapiDbContext))]
-    partial class abpapiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220401093505_v5.2")]
+    partial class v52
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
