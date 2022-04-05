@@ -52,6 +52,10 @@
     <PackageReference Include="Volo.Abp.SettingManagement.Web" Version="5.1.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Upload\" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="https://appsemble.app/api.json" /></VisualStudio></ProjectExtensions>
 
 </Project>

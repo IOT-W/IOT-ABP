@@ -5,10 +5,10 @@ using System.Web;
 
 /// <summary>
 /// config 的摘要说明
-/// </summary>
-public class Config
+/// </summary>  
+public class Configs
 {
-    public Config()
+    public Configs()
     {
         //
         // TODO: 在此处添加构造函数逻辑

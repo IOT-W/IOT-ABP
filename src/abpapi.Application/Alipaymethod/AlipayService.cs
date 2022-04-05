@@ -23,7 +23,7 @@ namespace PlatForm.Service
         ///<returns></returns>[HttpPost]
         public string PayRequest(string tradeno, string subject, string totalAmout, string itemBody)
         {
-            DefaultAopClient client = new DefaultAopClient(Config.gatewayUrl, Config.app_id, Config.private_key, "json", "2.0", Config.sign_type, Config.alipay_public_key, Config.charset, false);
+            DefaultAopClient client = new DefaultAopClient(Configs.gatewayUrl, Configs.app_id, Configs.private_key, "json", "2.0", Configs.sign_type, Configs.alipay_public_key, Configs.charset, false);
 
             // 组装业务参数model
             AlipayTradePagePayModel model = new AlipayTradePagePayModel();
@@ -44,7 +44,7 @@ namespace PlatForm.Service
             var response = client.SdkExecute(request);
             Console.WriteLine($"订单支付发起成功，订单号：{tradeno}");
             //跳转支付宝支付
-            return Config.gatewayUrl + "?" + response.Body;
+            return Configs.gatewayUrl + "?" + response.Body;
         }
 
         /// <summary>
@@ -117,8 +117,8 @@ namespace PlatForm.Service
    //     }
         public string Query(string tradeno, string alipayTradeNo)
         {
-            DefaultAopClient client = new DefaultAopClient(Config.gatewayUrl, Config.app_id, Config.private_key, "json", "2.0",
-                Config.sign_type, Config.alipay_public_key, Config.charset, false);
+            DefaultAopClient client = new DefaultAopClient(Configs.gatewayUrl, Configs.app_id, Configs.private_key, "json", "2.0",
+                Configs.sign_type, Configs.alipay_public_key, Configs.charset, false);
             AlipayTradeQueryModel model = new AlipayTradeQueryModel();
             model.OutTradeNo = tradeno;
             model.TradeNo = alipayTradeNo;
@@ -140,8 +140,8 @@ namespace PlatForm.Service
         /// <returns></returns>
         public string Refund(string tradeno, string alipayTradeNo, string refundAmount, string refundReason, string refundNo)
         {
-            DefaultAopClient client = new DefaultAopClient(Config.gatewayUrl, Config.app_id, Config.private_key, "json", "2.0",
-                Config.sign_type, Config.alipay_public_key, Config.charset, false);
+            DefaultAopClient client = new DefaultAopClient(Configs.gatewayUrl, Configs.app_id, Configs.private_key, "json", "2.0",
+                Configs.sign_type, Configs.alipay_public_key, Configs.charset, false);
 
             AlipayTradeRefundModel model = new AlipayTradeRefundModel();
             model.OutTradeNo = tradeno;
@@ -165,8 +165,8 @@ namespace PlatForm.Service
         /// <returns></returns>
         public string RefundQuery(string tradeno, string alipayTradeNo, string refundNo)
         {
-            DefaultAopClient client = new DefaultAopClient(Config.gatewayUrl, Config.app_id, Config.private_key, "json", "2.0",
-                Config.sign_type, Config.alipay_public_key, Config.charset, false);
+            DefaultAopClient client = new DefaultAopClient(Configs.gatewayUrl, Configs.app_id, Configs.private_key, "json", "2.0",
+                Configs.sign_type, Configs.alipay_public_key, Configs.charset, false);
 
             if (string.IsNullOrEmpty(refundNo))
             {
@@ -192,8 +192,8 @@ namespace PlatForm.Service
         /// <returns></returns>
         public string OrderClose(string tradeno, string alipayTradeNo)
         {
-            DefaultAopClient client = new DefaultAopClient(Config.gatewayUrl, Config.app_id, Config.private_key, "json", "2.0",
-                Config.sign_type, Config.alipay_public_key, Config.charset, false);
+            DefaultAopClient client = new DefaultAopClient(Configs.gatewayUrl, Configs.app_id, Configs.private_key, "json", "2.0",
+                Configs.sign_type, Configs.alipay_public_key, Configs.charset, false);
 
             AlipayTradeCloseModel model = new AlipayTradeCloseModel();
             model.OutTradeNo = tradeno;
