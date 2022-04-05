@@ -8,6 +8,7 @@ namespace abpapi.Brank
 {
     public class BrandInput
     {
+        public Guid Id { get; set; }
         /// 品牌名称
         /// </summary>
         public string BName { get; set; }
