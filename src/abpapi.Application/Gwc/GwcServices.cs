@@ -196,7 +196,7 @@ namespace abpapi.Gwc
             //删除需要添加购买数量的旧数据
             ls.Remove(UpdList);
             //更换购买数量
-            UpdList.Num = num;
+            UpdList.ShopNum = num;
             //重新添加需要更换购买数量的商品
             ls.Add(UpdList);
             var NewList = convert.GwcInputConvert(ls);

@@ -9,14 +9,15 @@ namespace abpapi.GwcModels
     public class GwcOutPutModels
     {
         public int SizeOrColorId { get; set; }  //规格Id
-        public string Number { get; set; }      //商品编号
-        public string Img { get; set; }         //图片
-        public string Title { get; set; }       //标题
+        public string Goods_Coding { get; set; }      //商品编号
+        public string Goods_Img { get; set; }         //图片
+        public string Goods_Name { get; set; }       //商品名称
         public string Color { get; set; }       //颜色
         public string Size { get; set; }        //尺码
-        public float Price { get; set; }        //单价
-        public int Num { get; set; }            //数量
-        public int Sku { get; set; }            //库存
+        public float Goods_SalePrice { get; set; }        //销售价
+        public float Goods_MarketPrice { get; set; } //市场价
+        public int ShopNum { get; set; }            //数量
+        public int Goods_Sku { get; set; }            //库存
     }
 }
 
